@@ -2,18 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-
-bool isNumber(const char character);
-bool isOperator(const char character);
-bool isInteger(double number);
-bool validExpression(char** argugments, int size);
-char* getNumber(char* string, int pos);
-char* getOperator(char* string, int pos);
-char** createExpression(char** arguments, int argc, int* size);
-void reduceExpression(char** expression, int* size, double result, int operatorPosition);
-void removeFromExpression(char** expression, int* size, int position);
-double calculate(char** expression, int* size, int start, int end);
-void freeExpression(char** expression, int size);
+#include "header.h"
 
 int main(int argc, char* argv[]){
     int size;
@@ -67,7 +56,7 @@ bool isInteger(double number){
 bool validExpression(char** arguments, int size){
     int i, j, k;
     bool isValid;
-    char* validInputs = "123456789+-x/()";
+    char* validInputs = "123456789+-x/().";
 
     for(i=1; i<size; i++){
         j = 0;
@@ -192,6 +181,13 @@ char** createExpression(char** argv, int argc, int* size){
 
 }
 
+void removeFromExpression(char** expression, int* size, int position){
+    int i;
+    for(i=position; i < (*size)-1; i++)
+        strcpy(expression[i], expression[i+1]);
+    (*size)--;
+}
+
 void reduceExpression(char** expression, int* size, double result, int operatorPosition){
     char temp[4];
     // Storing the result of the operation before the operator
@@ -200,13 +196,6 @@ void reduceExpression(char** expression, int* size, double result, int operatorP
     // Remove the operator and the number after it from expression
     removeFromExpression(expression, size, operatorPosition + 1);
     removeFromExpression(expression, size, operatorPosition);
-}
-
-void removeFromExpression(char** expression, int* size, int position){
-    int i;
-    for(i=position; i < (*size)-1; i++)
-        strcpy(expression[i], expression[i+1]);
-    (*size)--;
 }
 
 double calculate(char** expression, int* size, int start, int end){
