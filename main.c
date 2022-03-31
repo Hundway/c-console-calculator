@@ -12,7 +12,6 @@ int main(int argc, char* argv[]){
     if(argc == 1){
         printf("Usage : %s <number> <operator> <number>\n", argv[0]);
         printf("Valid Operators : + - x / ( )\n");
-        printf("You must put a space between a number and an operator\n");
         return EXIT_FAILURE;
     }
 
