@@ -1,5 +1,7 @@
-#ifndef HEADER_H
-#define HEADER_H
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+#define BUFFER_SIZE_DOUBLE 24
 
 bool isNumber(const char character);
 bool isOperator(const char character);
@@ -13,7 +15,7 @@ char** createExpression(char** arguments, int argc, int* size);
 
 void removeFromExpression(char** expression, int* size, int position);
 void reduceExpression(char** expression, int* size, double result, int operatorPosition);
-double calculate(char** expression, int* size, int start, int end);
+int calculate(char** expression, int* size, int start, int end, double* result);
 
 void freeExpression(char** expression, int size);
 
