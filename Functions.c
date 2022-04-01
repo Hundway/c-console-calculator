@@ -44,6 +44,10 @@ bool validExpression(char** arguments, int size){
                 k++;
             }
             j++;
+            if(strcmp(arguments[j], "(") == 0)
+                openParenthesis++;
+            if(strcmp(arguments[j], ")") == 0)
+                closedParenthesis++;
         }
     }
  
